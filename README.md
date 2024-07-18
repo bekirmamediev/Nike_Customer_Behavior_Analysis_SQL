@@ -17,7 +17,7 @@ An index.html file is included for easy navigation through the questions and the
 ## Dataset overview:
 
 This database contains data about the e-commerce business of Nike. The database includes four different tables that include information about online orders, products, and distribution of the products.
-To connect database: postgres://Test:bQNxVzJL4g6u@ep-noisy-flower-846766.us-east-2.aws.neon.tech/SQL_2_3
+Database link: postgres://Test:bQNxVzJL4g6u@ep-noisy-flower-846766.us-east-2.aws.neon.tech/SQL_2_3
 
 ## Tables
 
