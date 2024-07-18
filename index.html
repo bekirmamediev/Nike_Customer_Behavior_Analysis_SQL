@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <title>Nike Customer Behavior Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        .output-image {
+            margin-top: 10px;
+        }
+
+        .code {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .techniques {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Nike Customer Behavior Analysis</h1>
+    <p>This project analyzes the purchasing behavior of customers across Nike Official and Nike Vintage business units.
+        The goal is to understand patterns and trends in customer orders and to identify key insights that can drive
+        business decisions.</p>
+
+    <h2>Analysis Questions</h2>
+    <ol>
+        <li>
+            <h3>Question 1: Top Customers by Total Revenue</h3>
+            <p>Identify the top customers by the total amount of revenue (aggregate of the sales price) for the combined
+                Nike Official and Nike Vintage business units. Include the customer ID, total revenue, and the number of
+                order items each customer has purchased. Only include orders that have not been cancelled or returned.
+            </p>
+            <pre
+                class="code"><code><a href="https://github.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/blob/main/q1_top_customers.sql">Question 1 SQL</a></code></pre>
+            <img class="output-image"
+                src="https://raw.githubusercontent.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/main/outputs/q1.png"
+                alt="Question 1 Output">
+            <div class="techniques">
+                Techniques Used:
+                <ul>
+                    <li><strong>Common Table Expression (CTE)</strong>: Used to combine order items from both Nike
+                        Official and Nike Vintage into a common table (`comon_table`).</li>
+                    <li><strong>Aggregation</strong>: COUNT and SUM functions to calculate the total number of orders
+                        and total revenue per user in `rev_user_table`.</li>
+                    <li><strong>INNER JOIN</strong>: To filter out orders that have been cancelled or returned.</li>
+                    <li><strong>Ordering</strong>: Results are ordered by total revenue in descending order.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <h3>Question 2: Customer Segmentation by Purchasing Behavior</h3>
+            <p>Segment customers into three segments:
+            <ul>
+                <li>Customers that only purchased a single product.</li>
+                <li>Customers that purchased more than one product.</li>
+                <li>“Missing Data” (if none of these conditions match).</li>
+            </ul>
+            Determine the number of customers and the total revenue (aggregate of the sales price) in each segment. Only
+            include orders that have not been cancelled or returned.</p>
+            <pre
+                class="code"><code><a href="https://github.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/blob/main/q2_Customer_Segmentation.sql">Question 2 SQL</a></code></pre>
+            <img class="output-image"
+                src="https://raw.githubusercontent.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/main/outputs/q2.png"
+                alt="Question 2 Output">
+            <div class="techniques">
+                Techniques Used:
+                <ul>
+                    <li><strong>Common Table Expression (CTE)</strong>: Used to combine order items from both Nike
+                        Official and Nike Vintage into a common table (`comon_table`).</li>
+                    <li><strong>Conditional Aggregation</strong>: SUM CASE WHEN to categorize customers based on their
+                        purchasing behavior in `temp_product`.</li>
+                    <li><strong>INNER JOIN</strong>: To filter out orders that have been cancelled or returned.</li>
+                    <li><strong>UNION ALL</strong>: To combine datasets from different sources.</li>
+                    <li><strong>Grouping and Aggregation</strong>: Grouping by customer segments and summing up revenues
+                        and counts.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <h3>Question 3: Revenue Distribution by State</h3>
+            <p>Analyze the percentage of total revenue per state that comes from the Nike Official business. Create a
+                list showing the total revenue per state, the revenue from Nike Official, and the percentage of Nike
+                Official revenue compared to the total revenue for each state. Only include orders that have not been
+                cancelled or returned. Order the results by the state with the highest total revenue first.</p>
+            <pre
+                class="code"><code><a href="https://github.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/blob/main/q3_Revenue_Distribution.sql">Question 3 SQL</a></code></pre>
+            <img class="output-image"
+                src="https://raw.githubusercontent.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/main/outputs/q3.png"
+                alt="Question 3 Output">
+            <div class="techniques">
+                Techniques Used:
+                <ul>
+                    <li><strong>Common Table Expression (CTE)</strong>: Used to combine order items from both Nike
+                        Official and Nike Vintage into a common table (`comon_table`).</li>
+                    <li><strong>COALESCE</strong>: Used to handle missing state data by assigning a default value ('Miss
+                        Data') in `customer_table`.</li>
+                    <li><strong>Aggregation</strong>: SUM function to calculate total revenues in `tr_table` and
+                        `nor_table`.</li>
+                    <li><strong>INNER JOIN</strong>: To join tables and ensure only completed and returned orders are
+                        included.</li>
+                    <li><strong>Percentage Calculation</strong>: Calculated the percentage of Nike Official revenue to
+                        total revenue.</li>
+                    <li><strong>Ordering</strong>: Results are ordered by total revenue in descending order.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <h3>Question 4: Order Status Summary by State</h3>
+            <p>Create an overview of orders by state. Summarize the number of orders with statuses of Complete or
+                Canceled (Returned or Cancelled) for each customer. Exclude orders that are still in progress
+                (Processing or Shipped) and only include orders for customers that have a state available.</p>
+            <pre
+                class="code"><code><a href="https://github.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/blob/main/q4_Order_Status_Summary.sql">Question 4 SQL</a></code></pre>
+            <img class="output-image"
+                src="https://raw.githubusercontent.com/bekirmamediev/Nike_Customer_Behavior_Analysis_SQL/main/outputs/q4.png"
+                alt="Question 4 Output">
+            <div class="techniques">
+                Techniques Used:
+                <ul>
+                    <li><strong>Common Table Expression (CTE)</strong>: Used to create temporary tables (`temp_table1`,
+                        `temp_table2`, `temp_table3`) for different order statuses.</li>
+                    <li><strong>INNER JOIN</strong>: To join tables and ensure the correct mapping of customers to their
+                        states and orders.</li>
+                    <li><strong>Filtering</strong>: Applied conditions to exclude orders that are still in progress and
+                        include only completed and returned/cancelled orders.</li>
+                    <li><strong>Aggregation</strong>: COUNT function to count the number of orders by status.</li>
+                </ul>
+            </div>
+        </li>
+    </ol>
+</body>
+
+</html>
