@@ -4,7 +4,7 @@
 
 This project aims to analyze the purchasing behavior of customers across Nike Official and Nike Vintage business units. The analysis focuses on understanding key metrics such as total revenue, customer segmentation, revenue distribution by state, and order status summaries. These insights will help drive business decisions and improve customer engagement strategies.
 Each question is answered using specific SQL queries, and the results are presented in a clear and structured manner.
-An index.html file is included for easy navigation through the questions and their corresponding analyses.
+An index.html file is included for easy navigation through the questions and their corresponding analyses. [View the Tableau Visualization](https://public.tableau.com/app/profile/bekir.mamediiev/viz/Nike_Revenue_Analysis/Dashboard1)
 
 ## Objectives
 
@@ -13,6 +13,7 @@ An index.html file is included for easy navigation through the questions and the
 3. Segment customers based on their purchasing behavior.
 4. Examine revenue distribution by state and the contribution of Nike Official.
 5. Summarize order statuses by state and customer.
+6. Visulize revenue distribution by state and age group
 
 ## Dataset overview:
 
